@@ -59,6 +59,9 @@
     <div class="container">
         <h2>{{ blog.title }}</h2>
         <p>{{ blog.pub_date }}</p>
+        {% if blog.photo %}
+        <img src="{{ blog.photo.url }}">
+        {% endif %}
         <p>{{ blog.summary }}<a href="{% url 'detail' blog.id %}">...more</a></p>
     </div>
     {% endfor %}

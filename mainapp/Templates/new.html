@@ -61,7 +61,8 @@
     </nav>
     <br>
     <div class="container">
-        <form action="{% url 'create' %}">
+        <form action="{% url 'create' %}" enctype="multipart/form-data">
+            {% csrf_token %}
             <h4>제목:</h4>
             <input type="text" name="title">
             <br>
@@ -70,6 +71,7 @@
             <textarea cols=40 rows=10 name="body"></textarea>
             <br>
             <br>
+            <input type="file" name="photo" accept="image/png, image/jpeg">
             <input class="btn btn-dark" type="submit" value="제출하기">
         </form>
     </div>

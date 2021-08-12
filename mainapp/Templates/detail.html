@@ -64,6 +64,9 @@
     <h1>{{ blog.title }}</h1>
     <p>{{ blog.pub_date }}</p>
     <p>{{ blog.body }}</p>
+    {% if blog.photo %}
+    <img src="{{ blog.photo.url }}">
+    {% endif %}
     </div>
 </body>
 
