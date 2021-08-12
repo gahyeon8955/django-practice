@@ -55,6 +55,8 @@
         </div>
     </nav>
     <br>
+    {% load static %}
+    <img src="{% static 'yerin.jpeg' %}" alt="">
     {% for blog in blogs.all %}
     <div class="container">
         <h2>{{ blog.title }}</h2>
