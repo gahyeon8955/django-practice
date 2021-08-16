@@ -2,20 +2,22 @@
 
 {% block content %}
 <form method="POST" action="{% url 'signup' %}">
+    <h1>Sign up</h1>
+    <p>{{ error }}</p>
     {% csrf_token %}
-    Username:
+    아이디:
     <br>
     <input name="username" type="text" value="">
     <br>
-    Password:
+    비밀번호:
     <br>
     <input name="password1" type="password" value="">
     <br>
-    Confirm Password:
+    비밀번호 확인:
     <br>
     <input name="password2" type="password" value="">
     <br>
     <br>
-    <input class="btn btn-dark" type="submit" value="Sign Up!">
+    <input class="btn btn-dark" type="submit" value="회원가입">
 </form>
 {% endblock %}
