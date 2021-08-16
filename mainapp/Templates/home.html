@@ -2,6 +2,11 @@
 {% block content %}
     {% load static %}
     <h1>git test</h1>
+    {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+    {% else %}
+    <p>Welcome, new user. Please log in.</p>
+    {% endif %}
     <img src="{% static 'yerin.jpeg' %}" alt="">
     {% for blog in blogs.all %}
     <div class="container">

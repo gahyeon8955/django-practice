@@ -38,8 +38,12 @@
                             etc.
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            {% else %}
                             <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
                             <li><a class="dropdown-item" href="{% url 'signup' %}">Signup</a></li>
+                            {% endif %}
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
