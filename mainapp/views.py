@@ -1,10 +1,21 @@
+from django.core import paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Blog
 
 def home(request):
     blogs = Blog.objects
-    return render(request, 'home.html', {"blogs":blogs})
+    blog_list = Blog.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(blog_list, 5)
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    return render(request, 'home.html', {"blogs":blogs, 'posts':posts})
 
 def detail(request, blog_id):
     blog_detail = get_object_or_404(Blog, pk=blog_id)

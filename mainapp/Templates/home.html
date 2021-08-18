@@ -1,21 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% load static %}
-    <h1>git test</h1>
-    {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
-    {% else %}
-    <p>Welcome, new user. Please log in.</p>
+{% load static %}
+{% if user.is_authenticated %}
+<p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+{% else %}
+<p>Welcome, new user. Please log in.</p>
+{% endif %}
+<img src="{% static 'yerin.jpeg' %}" alt="">
+{% for blog in posts %}
+<div class="container">
+    <h2>{{ blog.title }}</h2>
+    <p>{{ blog.pub_date }}</p>
+    {% if blog.photo %}
+    <img src="{{ blog.photo.url }}">
     {% endif %}
-    <img src="{% static 'yerin.jpeg' %}" alt="">
-    {% for blog in blogs.all %}
-    <div class="container">
-        <h2>{{ blog.title }}</h2>
-        <p>{{ blog.pub_date }}</p>
-        {% if blog.photo %}
-        <img src="{{ blog.photo.url }}">
-        {% endif %}
-        <p>{{ blog.summary }}<a href="{% url 'detail' blog.id %}">...more</a></p>
-    </div>
+    <p>{{ blog.summary }}<a href="{% url 'detail' blog.id %}">...more</a></p>
+</div>
+{% endfor %}
+
+{% if posts.has_other_pages %}
+<ul class="pagination">
+    {% if posts.has_previous %}
+    <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+    <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in posts.paginator.page_range %}
+    {% if posts.number == i %}
+    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+    {% else %}
+    <li><a href="?page={{ i }}">{{ i }}</a></li>
+    {% endif %}
     {% endfor %}
+    {% if posts.has_next %}
+    <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+    {% else %}
+    <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+</ul>
+{% endif %}
+
 {% endblock %}
