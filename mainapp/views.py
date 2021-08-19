@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Blog
+from faker import Faker
 
 def home(request):
     blogs = Blog.objects
@@ -32,4 +33,12 @@ def create(request):
     # blog.photo = request.FILES['photo']
     blog.pub_date = timezone.datetime.now()
     blog.save()
+    # for i in range(0,10):
+    #     blog=Blog()
+    #     blog.title=myfake.name()
+    #     blog.body=myfake.sentence()
+    #     blog.pub_date = timezone.datetime.now()
+    #     blog.save()
     return redirect('/blog/' + str(blog.id))
+
+myfake = Faker()
