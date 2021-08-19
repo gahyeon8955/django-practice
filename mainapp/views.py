@@ -7,8 +7,8 @@ from .models import Blog
 def home(request):
     blogs = Blog.objects
     blog_list = Blog.objects.all()
-    page = request.GET.get('page', 1)
     paginator = Paginator(blog_list, 5)
+    page = request.GET.get('page', 1)
     try:
         posts = paginator.page(page)
     except PageNotAnInteger:
