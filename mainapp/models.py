@@ -16,6 +16,7 @@ class Blog(models.Model):
             ymd_path,
             uuid_name + extension,
             ])
+
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     body = models.TextField()
