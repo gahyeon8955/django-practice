@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Login</h1>
-<form method="POST" action="{% url 'login'%}">
+<form method="POST" action="{% url 'accounts:login'%}">
     {% csrf_token %}
     <p>{{ error }}</p>
     아이디:

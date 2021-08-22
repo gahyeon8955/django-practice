@@ -16,11 +16,11 @@ def home(request):
         posts = paginator.page(1)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
-    return render(request, 'home.html', {"blogs":blogs, 'posts':posts})
+    return render(request, 'mainapp/home.html', {"blogs":blogs, 'posts':posts})
 
 def detail(request, blog_id):
     blog_detail = get_object_or_404(Blog, pk=blog_id)
-    return render(request, 'detail.html', {'blog':blog_detail})
+    return render(request, 'mainapp/detail.html', {'blog':blog_detail})
 
 # def create(request):
 #     blog = Blog()
@@ -50,4 +50,4 @@ def new(request):
             return redirect('home')
     else:
         form = BlogPost()
-        return render(request,'new.html',{'form':form})
+        return render(request,'mainapp/create.html',{'form':form})

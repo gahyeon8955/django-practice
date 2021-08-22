@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="POST" action="{% url 'signup' %}">
+<form method="POST" action="{% url 'accounts:signup' %}">
     <h1>Sign up</h1>
     <p>{{ error }}</p>
     {% csrf_token %}
