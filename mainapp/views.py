@@ -22,25 +22,25 @@ def detail(request, blog_id):
     blog_detail = get_object_or_404(Blog, pk=blog_id)
     return render(request, 'detail.html', {'blog':blog_detail})
 
-def create(request):
-    blog = Blog()
-    blog.title = request.GET['title']
-    blog.body = request.GET['body']
-    blog.photo = request.FILES.get('photo')
-    # blog.photo = request.FILES['photo']
-    blog.pub_date = timezone.datetime.now()
-    blog.save()
-    # for i in range(0,10):
-    #     blog=Blog()
-    #     blog.title=myfake.name()
-    #     blog.body=myfake.sentence()
-    #     blog.pub_date = timezone.datetime.now()
-    #     blog.save()
-    return redirect('/blog/' + str(blog.id))
+# def create(request):
+#     blog = Blog()
+#     blog.title = request.GET['title']
+#     blog.body = request.GET['body']
+#     blog.photo = request.FILES.get('photo')
+#     # blog.photo = request.FILES['photo']
+#     blog.pub_date = timezone.datetime.now()
+#     blog.save()
+#     # for i in range(0,10):
+#     #     blog=Blog()
+#     #     blog.title=myfake.name()
+#     #     blog.body=myfake.sentence()
+#     #     blog.pub_date = timezone.datetime.now()
+#     #     blog.save()
+#     return redirect('/blog/' + str(blog.id))
 
 myfake = Faker()
 
-def blogpost(request):
+def new(request):
     if request.method =='POST':
         form = BlogPost(request.POST, request.FILES)
         if form.is_valid():
