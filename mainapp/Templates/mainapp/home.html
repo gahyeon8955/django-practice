@@ -19,7 +19,7 @@
     {% if blog.photo %}
     <img src="{{ blog.photo.url }}">
     {% endif %}
-    <p>{{ blog.summary }}<a href="{% url 'mainapp:detail' blog.id %}">...more</a></p>
+    <p>{{ blog.summary }}<a href="{{ blog.get_absolute_url }}">...more</a></p>
 </div>
 {% endfor %}
 

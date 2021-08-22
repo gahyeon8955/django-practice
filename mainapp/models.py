@@ -2,6 +2,7 @@ from django.db import models
 import os
 from uuid import uuid4
 from django.utils import timezone
+from django.urls import reverse
 
 class Blog(models.Model):
     def date_upload_to(instance, filename):
@@ -27,3 +28,6 @@ class Blog(models.Model):
 
     def summary(self):
         return str(self.body)[:100]
+
+    def get_absolute_url(self):
+        return reverse('mainapp:detail', args=[self.id])
