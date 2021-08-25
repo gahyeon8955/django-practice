@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Blog
-from faker import Faker
 from .forms import BlogPost
 
 def home(request):
@@ -38,7 +37,7 @@ def detail(request, blog_id):
 #     #     blog.save()
 #     return redirect('/blog/' + str(blog.id))
 
-myfake = Faker()
+# myfake = Faker()
 
 def new(request):
     if request.method =='POST':
