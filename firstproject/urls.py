@@ -25,6 +25,7 @@ urlpatterns = [
     
     path('blog/', include('mainapp.urls', namespace='mainapp')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('google/', include('allauth.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
