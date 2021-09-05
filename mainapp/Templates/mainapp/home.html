@@ -6,6 +6,7 @@
     }
 </style>
 {% load static %}
+
 {% if user.is_authenticated %}
 <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
 {% else %}
@@ -46,5 +47,16 @@
     </ul>
 </nav>
 {% endif %}
+
+<div id="map" style="width:100%;height:400px;"></div>
+
+<script>
+var mapOptions = {
+    center: new naver.maps.LatLng(35.1531673, 128.0972582),
+    zoom: 14
+};
+
+var map = new naver.maps.Map('map', mapOptions);
+</script>
 
 {% endblock %}
