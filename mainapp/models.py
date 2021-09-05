@@ -3,6 +3,8 @@ import os
 from uuid import uuid4
 from django.utils import timezone
 from django.urls import reverse
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 class Blog(models.Model):
     def date_upload_to(instance, filename):
@@ -22,6 +24,7 @@ class Blog(models.Model):
     pub_date = models.DateTimeField('date published')
     body = models.TextField()
     photo = models.ImageField(upload_to=date_upload_to, blank=True)
+    image_thumbnail = ImageSpecField(source = 'photo',processors=[ResizeToFill(120,100)], format="JPEG", options={'quality':60})
 
     def __str__(self):
         return self.title
