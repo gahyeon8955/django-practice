@@ -3,8 +3,8 @@ import os
 from uuid import uuid4
 from django.utils import timezone
 from django.urls import reverse
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+from imagekit.models import ImageSpecField  #썸네일 지정
+from imagekit.processors import ResizeToFill  #썸네일 크기
 
 class Blog(models.Model):
     def date_upload_to(instance, filename):
