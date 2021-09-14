@@ -50,3 +50,35 @@ def new(request):
     else:
         form = BlogPost()
         return render(request,'mainapp/create.html',{'form':form})
+
+def delete(request, blog_id):
+    blog = Blog.objects.get(id = blog_id)
+    blog.delete()
+    return redirect('home')
+
+def update(request, blog_id):
+    blog = Blog.objects.get(id=blog_id)
+    if request.method == "POST":
+        form = BlogPost(request.POST, request.FILES, instance=blog)
+        if form.is_valid():
+            print(form.cleaned_data)
+            blog.title = form.cleaned_data['title']
+            blog.photo = form.cleaned_data['photo']
+            blog.body = form.cleaned_data['body']
+            blog.save()
+            return redirect('/blog/' + str(blog.id))
+    else:
+        form = BlogPost(instance=blog)
+        return render(request,'mainapp/update.html',{'form':form})
+
+# def update(request, blog_id):
+#     blog = get_object_or_404(Blog, pk=blog_id)
+#     form = BlogPost(request.POST, request.FILES, instance=blog, auto_id=True)
+
+#     if request.method == "POST":
+#         if form.is_valid():
+#             form.save()
+#             return redirect("/blog/" + str(blog_id))
+#     else:
+#         form = BlogPost(instance=blog)
+#         return render(request, 'mainapp/update.html', {"form": form})
