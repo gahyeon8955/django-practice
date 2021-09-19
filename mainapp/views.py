@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Blog
 from .forms import BlogPost
+from django.db.models import Q
 
 def home(request):
     blogs = Blog.objects
@@ -17,6 +18,15 @@ def home(request):
         posts = paginator.page(paginator.num_pages)
     return render(request, 'mainapp/home.html', {"blogs":blogs, 'posts':posts})
 
+def search(request):
+    blog_list = Blog.objects.all()
+    b = request.GET.get('b','')
+    if b:
+        blog_list = blog_list.filter(
+            Q(title__icontains=b) |
+            Q(body__icontains=b)
+        ).distinct()
+    return render(request, 'mainapp/search.html', {'blog_list':blog_list, 'b':b})
 def detail(request, blog_id):
     blog_detail = get_object_or_404(Blog, pk=blog_id)
     return render(request, 'mainapp/detail.html', {'blog':blog_detail})

@@ -53,8 +53,8 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">
+                <form class="d-flex" method="get" action="{% url 'mainapp:search' %}">
+                    <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="b" value="{{b}}">
                     <button type="submit" class="btn btn-secondary">Submit</button>
                 </form>
             </div>

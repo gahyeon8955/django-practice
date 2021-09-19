@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for blog in blog_list %}
+<div class="container">
+    <h2>{{ blog.title }}</h2>
+    <p>{{ blog.pub_date }}</p>
+    {% if blog.photo %}
+    <img src="{{ blog.photo.url }}">
+    <!-- <img src="{{blog.image_thumbnail.url}}"> -->
+    {% endif %}
+    {{blog.b}}
+    <p>{{ blog.summary }}<a href="{{ blog.get_absolute_url }}">...more</a></p>
+</div>
+{% endfor %}
+<h1>당신이 입력한 검색어는 {{b.title}}</h1>
+
+
+
+{% endblock %}
